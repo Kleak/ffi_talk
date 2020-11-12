@@ -1,17 +1,39 @@
 import 'dart:ffi' as ffi;
 
-typedef fibonacci_func = ffi.Int32 Function(ffi.Int32);
-
+typedef recursive_fibonacci_func = ffi.Int32 Function(ffi.Int32);
 typedef Fibonacci = int Function(int);
 
+typedef linear_fibonacci_func = ffi.Int32 Function(ffi.Int32);
+typedef LinearFibonacci = int Function(int);
+
 ffi.DynamicLibrary _libFibonacci;
-Fibonacci _fibonacci;
+Fibonacci _recursiveFibonacci;
+Fibonacci _linearFibonacci;
 
 void initLibrary(String libraryPath) {
   _libFibonacci = ffi.DynamicLibrary.open(libraryPath);
-  _fibonacci = _libFibonacci.lookupFunction<fibonacci_func, Fibonacci>('fibonacci');
+  _recursiveFibonacci = _libFibonacci.lookupFunction<recursive_fibonacci_func, Fibonacci>('recursiveFibonacci');
+  _linearFibonacci = _libFibonacci.lookupFunction<linear_fibonacci_func, Fibonacci>('linearFibonacci');
 }
 
-void nativeFibonacci(int n) => _fibonacci(n);
+int nativeRecursiveFibonacci(int n) => _recursiveFibonacci(n);
 
-int dartFibonacci(int n) => (n > 2) ? (dartFibonacci(n - 1) + dartFibonacci(n - 2)) : 1;
+int nativeLinearFibonacci(int n) => _linearFibonacci(n);
+
+int dartRecursiveFibonacci(int n) {
+  if (n == 0) {
+    return 0;
+  }
+  return (n > 2) ? (dartRecursiveFibonacci(n - 1) + dartRecursiveFibonacci(n - 2)) : 1;
+}
+
+int dartLinearFibonacci(int n) {
+  double y = 0, x = 1, aux;
+
+  for (var i = 0; i < n; i++) {
+    aux = y;
+    y = x;
+    x = x + aux;
+  }
+  return y.round();
+}

@@ -1,15 +1,28 @@
 import 'package:benchmark_harness/benchmark_harness.dart';
 import 'package:fibonacci_c_binding/fibonacci.dart';
 
-class DartFibonacci extends BenchmarkBase {
-  const DartFibonacci() : super('Dart Fibonacci');
+class DartRecursiveFibonacci extends BenchmarkBase {
+  const DartRecursiveFibonacci() : super('Dart Recursive Fibonacci');
 
   static void main() {
-    DartFibonacci().report();
+    DartRecursiveFibonacci().report();
   }
 
   @override
   void run() {
-    dartFibonacci(50);
+    dartRecursiveFibonacci(50);
+  }
+}
+
+class DartLinearFibonacci extends BenchmarkBase {
+  const DartLinearFibonacci() : super('Dart Linear Fibonacci');
+
+  static void main() {
+    DartLinearFibonacci().report();
+  }
+
+  @override
+  void run() {
+    dartLinearFibonacci(50);
   }
 }

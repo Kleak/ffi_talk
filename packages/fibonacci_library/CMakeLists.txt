@@ -8,3 +8,6 @@ set_target_properties(fibonacci_library PROPERTIES
     SOVERSION 1
     OUTPUT_NAME "fibonacci"
 )
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Release)
+endif()
