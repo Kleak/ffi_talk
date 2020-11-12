@@ -1,0 +1,30 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "packages/fibonacci_library"
+		},
+		{
+			"path": "packages/fibonacci_c_binding"
+		},
+		{
+			"name": "slide",
+			"path": "packages/slide"
+		}
+	],
+	"settings": {
+		"dart.flutterSdkPath": ".fvm/flutter_sdk"
+	},
+	"launch": {
+		"configurations": [
+			{
+				"name": "slide",
+				"request": "launch",
+				"type": "dart",
+				"program": "${workspaceFolder:slide}/lib/main.dart"
+			}
+		],
+	}
+}
