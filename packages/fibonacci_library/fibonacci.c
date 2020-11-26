@@ -8,9 +8,6 @@ int recursiveFibonacci(int n) {
 int linearFibonacci(int n) {
     long y=0, x=1, aux;
 
-	/*@ loop_invariant 0 <= i <= n && isfib(i+1,x) && isfib(i,y);
-	  @ loop_variant n-i;
-	  @*/
 	for(int i=0; i < n; i++) {
 	    aux = y;
 	    y = x;
